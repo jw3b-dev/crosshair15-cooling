@@ -1,0 +1,5 @@
+site/
+logs/*.csv
+__pycache__/
+*.pyc
+.playwright-mcp/

@@ -1,0 +1,14 @@
+# Persist RAPL PL1/PL2 after boot. See Part 5b of the guide before using.
+# Install:  sudo cp tools/rapl-limits.service /etc/systemd/system/ && sudo systemctl enable --now rapl-limits
+# Revert:   sudo systemctl disable --now rapl-limits  (limits return to EC defaults on next boot)
+[Unit]
+Description=Set Intel RAPL PL1/PL2 power limits
+After=multi-user.target thermald.service
+
+[Service]
+Type=oneshot
+# PL1 45 W, PL2 90 W. Only raise these after the thermal interface is fixed.
+ExecStart=/bin/sh -c 'echo 45000000 > /sys/class/powercap/intel-rapl:0/constraint_0_power_limit_uw; echo 90000000 > /sys/class/powercap/intel-rapl:0/constraint_1_power_limit_uw'
+
+[Install]
+WantedBy=multi-user.target
