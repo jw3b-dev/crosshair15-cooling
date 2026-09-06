@@ -116,7 +116,7 @@ HEAD = """<!DOCTYPE html>
             <div class="panel-bar px-4 py-2 flex items-center gap-3 mono text-xs text-slate-500">
                 <span class="flex gap-1.5"><span class="h-3 w-3 rounded-full bg-rose-500/80"></span><span class="h-3 w-3 rounded-full bg-amber-400/80"></span><span class="h-3 w-3 rounded-full bg-emerald-400/80"></span></span>
                 <span>jw3b@crosshair15: ~/cooling</span>
-                <span class="ml-auto hidden sm:inline">[8453:BASE] <span id="jw3b-net-top">🟢 connected</span></span>
+                <span class="ml-auto hidden sm:inline">build __BUILD__ · <span id="jw3b-net-top">🟢 connected</span></span>
             </div>
             <div class="grid lg:grid-cols-5 gap-8 px-6 sm:px-10 py-10">
                 <div class="lg:col-span-3 mono">
@@ -169,12 +169,12 @@ FOOT = """
             <div class="flex items-center gap-3">
                 <span class="flex items-center gap-1 text-emerald-400">
                     <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
-                    KTHULHU_ORCHESTRATOR_ONLINE
+                    THERMAL_GUIDE_ONLINE
                 </span>
                 <span>|</span>
                 <span>ENV: PRODUCTION</span>
                 <span class="hidden sm:inline">|</span>
-                <span class="hidden sm:inline">[8453:BASE] <span id="jw3b-net">🟢 connected</span> | latency: <span id="jw3b-lat">…</span></span>
+                <span class="hidden sm:inline">BUILD: __BUILD__ | <span id="jw3b-net">🟢 connected</span> | latency: <span id="jw3b-lat">…</span></span>
             </div>
             <div class="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors">
                 <span>// STAY WEIRD</span>
@@ -340,6 +340,14 @@ class Renderer:
         return "".join(self.out)
 
 
+def build_id() -> str:
+    import subprocess
+    try:
+        return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], cwd=HERE, stderr=subprocess.DEVNULL, text=True).strip()
+    except Exception:
+        return "dev"
+
+
 def convert_to_html():
     md = SRC.read_text()
     sections = [s for s in re.split(r"\n---+\n", md) if s.strip()]
@@ -381,7 +389,7 @@ def convert_to_html():
         + "</div></nav>\n"
     )
 
-    out = HEAD + nav + '<main class="max-w-6xl mx-auto px-6 pb-6 space-y-10">\n' + "\n".join(rendered) + "\n</main>" + FOOT
+    out = HEAD.replace("__BUILD__", build_id()) + nav + '<main class="max-w-6xl mx-auto px-6 pb-6 space-y-10">\n' + "\n".join(rendered) + "\n</main>" + FOOT.replace("__BUILD__", build_id())
     DST.parent.mkdir(parents=True, exist_ok=True)
     DST.write_text(out)
     print(f"wrote {DST} ({len(out):,} bytes, {len(r.toc)} sections)")
