@@ -33,7 +33,7 @@ SECTION_KEY = re.compile(r"^## ((?:Mod|Part) \d+[a-z]?)\b", re.M)
 # Not covered by the repository MIT license; see brand/LICENSE-BRAND.md.
 BRAND_HEADER = (
     '<a href="https://jw3b.dev" class="jw3b-brand font-mono flex items-center gap-2 select-none mr-2 shrink-0" title="jw3b.dev">'
-    '<span class="text-emerald-400 font-bold tracking-tight"><span class="mr-[0.35em]">~❯</span>'
+    '<span class="text-emerald-400 font-semibold tracking-tight"><span class="mr-[0.35em]">~❯</span>'
     '<span class="jw3b-t text-slate-100" style="--i:0">J</span>'
     '<span class="jw3b-t text-slate-100" style="--i:1">W</span>'
     '<span class="jw3b-t text-cyan-400" style="--i:2">3</span>'
@@ -53,31 +53,31 @@ HEAD = """<!DOCTYPE html>
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#020617">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'], sans: ['Inter', 'system-ui', 'sans-serif'] } } } }</script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script>tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'], sans: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'] } } } }</script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
         body {
-            font-family: 'Inter', system-ui, sans-serif; background-color: #020617; color: #cbd5e1;
+            font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; background-color: #020617; color: #cbd5e1;
             background-image: linear-gradient(rgba(34,211,238,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,.045) 1px, transparent 1px);
             background-size: 32px 32px;
         }
-        .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+        .mono { font-family: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace; }
         .glow { text-shadow: 0 0 18px rgba(34,211,238,.35); }
         .panel { background: rgba(15,23,42,.72); border: 1px solid #1e293b; box-shadow: 0 0 0 1px rgba(34,211,238,.04), 0 20px 60px -30px rgba(34,211,238,.25); backdrop-filter: blur(6px); }
         .panel-bar { border-bottom: 1px solid #1e293b; background: rgba(2,6,23,.6); }
         .content p { margin-bottom: 1rem; line-height: 1.7; }
         .content li { margin-bottom: 0.5rem; line-height: 1.6; }
         .content ul > li::marker { color: #22d3ee; }
-        .content ol > li::marker { color: #34d399; font-family: 'JetBrains Mono', monospace; }
-        .content code { font-family: 'JetBrains Mono', monospace; background: rgba(34,211,238,.08); color: #67e8f9; border: 1px solid rgba(34,211,238,.15); padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; }
-        .content pre { font-family: 'JetBrains Mono', monospace; background: #020617; color: #a7f3d0; border: 1px solid #1e293b; border-left: 3px solid #34d399; padding: 1rem 1.25rem; border-radius: 0.375rem; overflow-x: auto; margin: 0 0 1rem; font-size: 0.82rem; line-height: 1.55; }
+        .content ol > li::marker { color: #34d399; font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+        .content code { font-family: 'IBM Plex Mono', ui-monospace, monospace; background: rgba(34,211,238,.08); color: #67e8f9; border: 1px solid rgba(34,211,238,.15); padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-size: 0.85em; }
+        .content pre { font-family: 'IBM Plex Mono', ui-monospace, monospace; background: #020617; color: #a7f3d0; border: 1px solid #1e293b; border-left: 3px solid #34d399; padding: 1rem 1.25rem; border-radius: 0.375rem; overflow-x: auto; margin: 0 0 1rem; font-size: 0.82rem; line-height: 1.55; }
         .content pre code { background: none; border: 0; color: inherit; padding: 0; font-size: inherit; }
         .content table { width: 100%; border-collapse: collapse; margin: 0 0 1.25rem; font-size: 0.88rem; }
         .content th, .content td { border: 1px solid #1e293b; padding: 0.55rem 0.75rem; text-align: left; vertical-align: top; }
-        .content th { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.75rem; letter-spacing: .06em; text-transform: uppercase; color: #22d3ee; background: rgba(2,6,23,.7); }
+        .content th { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 600; font-size: 0.75rem; letter-spacing: .06em; text-transform: uppercase; color: #22d3ee; background: rgba(2,6,23,.7); }
         .content tr:nth-child(even) td { background: rgba(2,6,23,.35); }
-        .content blockquote { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; border: 1px solid rgba(251,191,36,.35); border-left: 3px solid #fbbf24; background: rgba(251,191,36,.06); color: #fde68a; padding: 0.75rem 1rem; margin: 0 0 1rem; border-radius: 0 0.375rem 0.375rem 0; }
+        .content blockquote { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.85rem; border: 1px solid rgba(251,191,36,.35); border-left: 3px solid #fbbf24; background: rgba(251,191,36,.06); color: #fde68a; padding: 0.75rem 1rem; margin: 0 0 1rem; border-radius: 0 0.375rem 0.375rem 0; }
         .content blockquote p { margin: 0; }
         .content blockquote p::before { content: "// WARN  "; color: #fbbf24; font-weight: 700; }
         .content a { color: #22d3ee; text-decoration: underline; text-decoration-color: rgba(34,211,238,.4); text-underline-offset: 3px; }
@@ -124,7 +124,7 @@ HEAD = """<!DOCTYPE html>
             </div>
             <div class="grid lg:grid-cols-5 gap-8 px-6 sm:px-10 py-10">
                 <div class="lg:col-span-3 mono">
-                    <div class="text-5xl sm:text-7xl font-bold tracking-tight glow mb-6 jw3b-brand">
+                    <div class="text-5xl sm:text-7xl font-semibold tracking-tight glow mb-6 jw3b-brand">
                         <span class="text-emerald-400 mr-[0.2em]">~❯</span><span class="jw3b-t text-slate-100" style="--i:0">J</span><span class="jw3b-t text-slate-100" style="--i:1">W</span><span class="jw3b-t text-cyan-400" style="--i:2">3</span><span class="jw3b-t text-slate-100" style="--i:3">B</span><span class="jw3b-t text-cyan-400" style="--i:4">.</span><span class="jw3b-cursor text-emerald-400" aria-hidden="true">_</span>
                     </div>
                     <p class="hero-line text-slate-500 text-sm mb-1" style="animation-delay:1.4s"><span class="text-emerald-400">~❯</span> cat Cooling_Mod_Report.md</p>
@@ -162,7 +162,7 @@ FOOT = """
     <footer class="mt-12 bg-slate-950 border-t border-slate-800 font-mono text-slate-500">
         <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
             <div class="flex items-center gap-3">
-                <a href="https://jw3b.dev" class="font-bold tracking-tight text-slate-100 hover:text-cyan-400">JW<span class="text-cyan-400">3</span>B<span class="text-cyan-400">.</span></a>
+                <a href="https://jw3b.dev" class="font-semibold tracking-tight text-slate-100 hover:text-cyan-400">JW<span class="text-cyan-400">3</span>B<span class="text-cyan-400">.</span></a>
                 <span class="text-slate-700">|</span>
                 <a href="https://github.com/jw3b-dev" class="hover:text-cyan-400">github.com/jw3b-dev</a>
                 <span class="text-slate-700">|</span>
