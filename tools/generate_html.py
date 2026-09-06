@@ -359,8 +359,8 @@ def convert_to_html():
             rendered.append(
                 f'<section class="panel rounded-lg overflow-hidden">{bar}<div class="flex flex-col lg:flex-row">\n'
                 f'<div class="p-6 sm:p-8 content lg:w-2/3">{body}</div>\n'
-                '<div class="lg:w-1/3 flex flex-col items-center justify-center p-6 sm:p-8 border-t lg:border-t-0 lg:border-l border-slate-800 hero-img">'
-                f'<div class="fig"><img src="{img}" alt="Mod Illustration" loading="lazy" onerror="this.closest(\'.hero-img\').remove()" class="max-w-full h-auto object-contain max-h-80"></div>{caption}</div>\n'
+                '<div class="lg:w-1/3 flex flex-col items-center justify-start p-6 sm:p-8 border-t lg:border-t-0 lg:border-l border-slate-800 hero-img">'
+                f'<div class="fig lg:sticky lg:top-24"><img src="{img}" alt="Mod Illustration" loading="lazy" onerror="this.closest(\'.hero-img\').remove()" class="max-w-full h-auto object-contain max-h-80"></div>{caption}</div>\n'
                 "</div></section>"
             )
         else:
