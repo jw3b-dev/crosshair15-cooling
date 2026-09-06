@@ -30,14 +30,14 @@ SECTION_KEY = re.compile(r"^## ((?:Mod|Part) \d+[a-z]?)\b", re.M)
 
 # jw3b.dev brand header (BrandHeader.jsx, mode="full") translated to static Tailwind
 BRAND_HEADER = (
-    '<a href="https://jw3b.dev" class="jw3b-brand font-mono flex items-center gap-2 select-none mr-2" title="jw3b.dev">'
-    '<span class="text-emerald-400 font-bold tracking-tight">~❯ '
+    '<a href="https://jw3b.dev" class="jw3b-brand font-mono flex items-center gap-2 select-none mr-2 shrink-0" title="jw3b.dev">'
+    '<span class="text-emerald-400 font-bold tracking-tight"><span class="mr-[0.35em]">~❯</span>'
     '<span class="jw3b-t text-slate-100" style="--i:0">J</span>'
     '<span class="jw3b-t text-slate-100" style="--i:1">W</span>'
     '<span class="jw3b-t text-cyan-400" style="--i:2">3</span>'
     '<span class="jw3b-t text-slate-100" style="--i:3">B</span>'
     '<span class="jw3b-t text-cyan-400" style="--i:4">.</span>'
-    '<span class="jw3b-cursor text-cyan-400" aria-hidden="true">_</span></span></a>'
+    '<span class="jw3b-cursor text-emerald-400" aria-hidden="true">_</span></span></a>'
 )
 
 HEAD = """<!DOCTYPE html>
@@ -81,6 +81,7 @@ HEAD = """<!DOCTYPE html>
         .content a:hover { color: #67e8f9; text-decoration-color: #67e8f9; }
         .content h2 .hash { color: #22d3ee; margin-right: .5rem; }
         .table-wrap { overflow-x: auto; }
+        .no-scrollbar { scrollbar-width: none; } .no-scrollbar::-webkit-scrollbar { display: none; }
         .fig { border: 1px solid #1e293b; border-radius: .375rem; overflow: hidden; background: #020617; }
         .fig img { filter: saturate(.85) contrast(1.05); opacity: .9; transition: all .3s; }
         .fig:hover img { filter: none; opacity: 1; }
@@ -121,7 +122,7 @@ HEAD = """<!DOCTYPE html>
             <div class="grid lg:grid-cols-5 gap-8 px-6 sm:px-10 py-10">
                 <div class="lg:col-span-3 mono">
                     <div class="text-5xl sm:text-7xl font-bold tracking-tight glow mb-6 jw3b-brand">
-                        <span class="text-emerald-400">~❯ </span><span class="jw3b-t text-slate-100" style="--i:0">J</span><span class="jw3b-t text-slate-100" style="--i:1">W</span><span class="jw3b-t text-cyan-400" style="--i:2">3</span><span class="jw3b-t text-slate-100" style="--i:3">B</span><span class="jw3b-t text-cyan-400" style="--i:4">.</span><span class="jw3b-cursor text-cyan-400" aria-hidden="true">_</span>
+                        <span class="text-emerald-400 mr-[0.2em]">~❯</span><span class="jw3b-t text-slate-100" style="--i:0">J</span><span class="jw3b-t text-slate-100" style="--i:1">W</span><span class="jw3b-t text-cyan-400" style="--i:2">3</span><span class="jw3b-t text-slate-100" style="--i:3">B</span><span class="jw3b-t text-cyan-400" style="--i:4">.</span><span class="jw3b-cursor text-emerald-400" aria-hidden="true">_</span>
                     </div>
                     <p class="hero-line text-slate-500 text-sm mb-1" style="animation-delay:1.4s"><span class="text-emerald-400">~❯</span> cat Cooling_Mod_Report.md</p>
                     <h1 class="hero-line text-2xl sm:text-3xl font-bold text-slate-100 leading-tight mb-3" style="animation-delay:1.6s">MSI Crosshair 15 <span class="text-cyan-400">//</span> Cooling Mod Guide</h1>
@@ -379,7 +380,7 @@ def convert_to_html():
 
     nav = (
         '<nav class="sticky top-0 z-20 bg-slate-950/90 backdrop-blur border-y border-slate-800 mb-10">'
-        '<div class="max-w-6xl mx-auto px-6 py-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs mono">'
+        '<div class="max-w-6xl mx-auto px-6 py-2 flex flex-nowrap items-center gap-x-4 text-xs mono overflow-x-auto no-scrollbar">'
         + BRAND_HEADER +
         '<span class="text-slate-700 hidden sm:inline">|</span>'
         + "".join(
