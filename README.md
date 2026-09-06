@@ -49,4 +49,10 @@ Part 6b before stress testing a machine that already throttles at idle.
 
 ## License
 
-MIT. Research digests summarise third-party sources; see each file's Sources list.
+**Code and documentation:** MIT, see [LICENSE](LICENSE). Research digests summarise
+third-party sources; see each file's Sources list.
+
+**Brand assets:** © 2026 John Wellard (jw3b.dev), all rights reserved. The `JW3B.` mark,
+the `~❯ JW3B._` prompt treatment, the `// STAY WEIRD 👽` tagline and the header/footer
+components in [brand/](brand/) are excluded from the MIT grant. See
+[brand/LICENSE-BRAND.md](brand/LICENSE-BRAND.md). Forks must remove or replace them.

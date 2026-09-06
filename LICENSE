@@ -1,6 +1,12 @@
 MIT License
 
-Copyright (c) 2026 jw3b-dev
+Copyright (c) 2026 John Wellard (jw3b.dev)
+
+EXCLUSION: The brand assets identified in brand/LICENSE-BRAND.md (the JW3B. wordmark
+and prompt mark, the "// STAY WEIRD" tagline, the BrandHeader and IdeFooter components
+and their HTML/CSS translations in tools/generate_html.py) are NOT licensed under these
+terms. All rights in those assets are reserved. Everything else in this repository is
+licensed as follows.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

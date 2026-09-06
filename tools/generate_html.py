@@ -28,7 +28,9 @@ CREDITS = {
 }
 SECTION_KEY = re.compile(r"^## ((?:Mod|Part) \d+[a-z]?)\b", re.M)
 
-# jw3b.dev brand header (BrandHeader.jsx, mode="full") translated to static Tailwind
+# jw3b.dev brand header (BrandHeader.jsx, mode="full") translated to static Tailwind.
+# BRAND ASSET: Copyright (c) 2026 John Wellard (jw3b.dev). All rights reserved.
+# Not covered by the repository MIT license; see brand/LICENSE-BRAND.md.
 BRAND_HEADER = (
     '<a href="https://jw3b.dev" class="jw3b-brand font-mono flex items-center gap-2 select-none mr-2 shrink-0" title="jw3b.dev">'
     '<span class="text-emerald-400 font-bold tracking-tight"><span class="mr-[0.35em]">~❯</span>'
@@ -41,6 +43,7 @@ BRAND_HEADER = (
 )
 
 HEAD = """<!DOCTYPE html>
+<!-- Content: MIT (github.com/jw3b-dev/crosshair15-cooling). Brand assets (JW3B. mark, prompt, // STAY WEIRD, header/footer): (c) 2026 John Wellard, all rights reserved. -->
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
@@ -154,7 +157,8 @@ HEAD = """<!DOCTYPE html>
 """
 
 FOOT = """
-    <!-- IdeFooter.jsx translated to static Tailwind; status values are live, not hardcoded -->
+    <!-- IdeFooter.jsx translated to static Tailwind; status values are live, not hardcoded.
+         BRAND ASSET: (c) 2026 John Wellard (jw3b.dev). All rights reserved. See brand/LICENSE-BRAND.md. -->
     <footer class="mt-12 bg-slate-950 border-t border-slate-800 font-mono text-slate-500">
         <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
             <div class="flex items-center gap-3">
@@ -164,7 +168,7 @@ FOOT = """
                 <span class="text-slate-700">|</span>
                 <a href="https://github.com/jw3b-dev/crosshair15-cooling" class="hover:text-cyan-400">source &amp; tooling</a>
             </div>
-            <div class="text-slate-600 text-xs">MSI Crosshair 15 B12UGSZ &middot; cooling mods &amp; Linux thermal tooling &middot; MIT</div>
+            <div class="text-slate-600 text-xs text-right">MSI Crosshair 15 B12UGSZ &middot; cooling mods &amp; Linux thermal tooling &middot; <a href="https://github.com/jw3b-dev/crosshair15-cooling/blob/main/LICENSE" class="hover:text-cyan-400">code MIT</a><br>&copy; 2026 John Wellard &middot; JW3B. mark, prompt and <span class="text-slate-500">// STAY WEIRD</span> are brand assets, <a href="https://github.com/jw3b-dev/crosshair15-cooling/blob/main/brand/LICENSE-BRAND.md" class="hover:text-cyan-400">all rights reserved</a></div>
         </div>
         <div class="h-6 w-full bg-slate-950 border-t border-slate-800 px-3 flex items-center justify-between text-xs">
             <div class="flex items-center gap-3">
