@@ -23,6 +23,15 @@ IMAGES = {
 }
 SECTION_KEY = re.compile(r"^## ((?:Mod|Part) \d+[a-z]?)\b", re.M)
 
+# jw3b.dev brand header (BrandHeader.jsx, mode="full") translated to static Tailwind
+BRAND_HEADER = (
+    '<a href="https://jw3b.dev" class="font-mono flex items-center gap-2 select-none mr-2" title="jw3b.dev">'
+    '<span class="text-emerald-400 font-bold tracking-tight">~❯ '
+    '<span class="text-slate-100">JW</span><span class="text-cyan-400">3</span>'
+    '<span class="text-slate-100">B</span><span class="text-cyan-400">.</span>'
+    '<span class="animate-pulse text-cyan-400">_</span></span></a>'
+)
+
 HEAD = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +78,7 @@ HEAD = """<!DOCTYPE html>
     <header class="hero-bg text-white py-16 shadow-lg mb-8">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
             <div class="flex-1">
-                <span class="text-red-500 font-semibold tracking-wider uppercase text-sm">Extreme Desktop Replacement</span>
+                <span class="font-mono text-sm text-cyan-400"><span class="text-emerald-400">~❯</span> jw3b.dev / crosshair15-cooling <span class="text-slate-500">// extreme desktop replacement</span></span>
                 <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4 leading-tight">MSI Crosshair 15<br/>Cooling Mod Guide</h1>
                 <p class="text-gray-300 text-lg">Deep-dive build guides, complete parts lists, and risk mitigation strategies for pushing the i9-12900H and RTX 3070 Ti beyond factory limits &mdash; now with a Linux-native tuning and validation path.</p>
             </div>
@@ -81,11 +90,47 @@ HEAD = """<!DOCTYPE html>
 """
 
 FOOT = """
-    <footer class="bg-gray-900 text-gray-400 py-8 text-center mt-12">
-        <p class="mb-2">Built for Extreme Laptop Modification Enthusiasts.</p>
-        <p class="text-sm mb-4">Created to push the MSI Crosshair 15 beyond factory thermal limits.</p>
-        <p class="text-sm">By <a href="https://jw3b.dev" class="text-red-400 hover:text-red-300 underline">jw3b.dev</a> &middot; <a href="https://github.com/jw3b-dev" class="text-red-400 hover:text-red-300 underline">github.com/jw3b-dev</a> &middot; <a href="https://github.com/jw3b-dev/crosshair15-cooling" class="text-red-400 hover:text-red-300 underline">source &amp; tooling</a></p>
+    <!-- IdeFooter.jsx translated to static Tailwind; status values are live, not hardcoded -->
+    <footer class="mt-12 bg-slate-950 border-t border-slate-800 font-mono text-slate-500">
+        <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm">
+            <div class="flex items-center gap-3">
+                <a href="https://jw3b.dev" class="font-bold tracking-tight text-slate-100 hover:text-cyan-400">JW<span class="text-cyan-400">3</span>B<span class="text-cyan-400">.</span></a>
+                <span class="text-slate-700">|</span>
+                <a href="https://github.com/jw3b-dev" class="hover:text-cyan-400">github.com/jw3b-dev</a>
+                <span class="text-slate-700">|</span>
+                <a href="https://github.com/jw3b-dev/crosshair15-cooling" class="hover:text-cyan-400">source &amp; tooling</a>
+            </div>
+            <div class="text-slate-600 text-xs">MSI Crosshair 15 B12UGSZ &middot; cooling mods &amp; Linux thermal tooling &middot; MIT</div>
+        </div>
+        <div class="h-6 w-full bg-slate-950 border-t border-slate-800 px-3 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-3">
+                <span class="flex items-center gap-1 text-emerald-400">
+                    <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
+                    KTHULHU_ORCHESTRATOR_ONLINE
+                </span>
+                <span>|</span>
+                <span>ENV: PRODUCTION</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="hidden sm:inline">[8453:BASE] <span id="jw3b-net">🟢 connected</span> | latency: <span id="jw3b-lat">…</span></span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors">
+                <span>// STAY WEIRD</span>
+                <span class="text-sm">👽</span>
+            </div>
+        </div>
     </footer>
+    <script>
+      (function () {
+        var lat = document.getElementById('jw3b-lat'), net = document.getElementById('jw3b-net');
+        function tick() {
+          var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+          var ms = nav ? Math.max(1, Math.round(nav.responseStart - nav.requestStart)) : null;
+          if (lat) lat.textContent = ms ? ms + 'ms' : 'n/a';
+          if (net) net.textContent = navigator.onLine ? '🟢 connected' : '🔴 offline';
+        }
+        tick(); window.addEventListener('online', tick); window.addEventListener('offline', tick);
+      })();
+    </script>
 </body>
 </html>
 """
@@ -255,10 +300,12 @@ def convert_to_html():
             )
 
     nav = (
-        '<nav class="sticky top-0 z-20 bg-white/90 dark:bg-gray-900/90 backdrop-blur border-b border-gray-200 dark:border-gray-800 mb-8">'
-        '<div class="max-w-6xl mx-auto px-6 py-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">'
+        '<nav class="sticky top-0 z-20 bg-slate-950/95 backdrop-blur border-b border-slate-800 mb-8">'
+        '<div class="max-w-6xl mx-auto px-6 py-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">'
+        + BRAND_HEADER +
+        '<span class="text-slate-700 hidden sm:inline">|</span>'
         + "".join(
-            f'<a href="#{sid}" class="text-gray-600 dark:text-gray-300 hover:text-red-600 whitespace-nowrap">{inline(t.split(":")[0])}</a>'
+            f'<a href="#{sid}" class="font-mono text-slate-400 hover:text-cyan-400 whitespace-nowrap">{inline(t.split(":")[0])}</a>'
             for sid, t in r.toc
         )
         + "</div></nav>\n"

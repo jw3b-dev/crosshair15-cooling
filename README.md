@@ -43,7 +43,9 @@ Part 6b before stress testing a machine that already throttles at idle.
 
 ## Author
 
-Built by [John @ jw3b.dev](https://jw3b.dev) · [github.com/jw3b-dev](https://github.com/jw3b-dev)
+`~❯ JW3B._` Built by [John @ jw3b.dev](https://jw3b.dev) · [github.com/jw3b-dev](https://github.com/jw3b-dev)
+
+`// STAY WEIRD 👽`
 
 ## License
 
