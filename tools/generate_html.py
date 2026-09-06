@@ -16,10 +16,15 @@ DST = HERE.parent / "site" / "index.html"
 IMAGES = {
     "Mod 1": "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80",
     "Mod 2": "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=800&q=80",
-    "Mod 3": "https://images.unsplash.com/photo-1600861194942-f8886458d34b?auto=format&fit=crop&w=800&q=80",
+    "Mod 3": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Water_Cooled_PC.jpg/960px-Water_Cooled_PC.jpg",
     "Mod 4": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=800&q=80",
     "Part 5": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80",
     "Part 6": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+}
+# Attribution for images whose licence requires it (rendered as a caption under the image)
+CREDITS = {
+    "Mod 3": ('"Water Cooled PC" via Wikimedia Commons, CC BY-SA 2.0',
+              "https://commons.wikimedia.org/wiki/File:Water_Cooled_PC.jpg"),
 }
 SECTION_KEY = re.compile(r"^## ((?:Mod|Part) \d+[a-z]?)\b", re.M)
 
@@ -284,13 +289,16 @@ def convert_to_html():
     for sec in sections:
         m = SECTION_KEY.search(sec)
         img = IMAGES.get(m.group(1)) if m else None
+        credit = CREDITS.get(m.group(1)) if m else None
+        caption = (f'<p class="text-[10px] text-gray-400 dark:text-gray-500 mt-2 text-center">Photo: <a href="{credit[1]}" class="underline" target="_blank" rel="noopener">{credit[0]}</a></p>'
+                   if credit else "")
         body = r.section(sec)
         if img:
             rendered.append(
                 '<section class="bg-white dark:bg-gray-900 rounded-xl shadow-md border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col lg:flex-row">\n'
                 f'<div class="p-8 content lg:w-2/3">{body}</div>\n'
-                '<div class="bg-gray-50 dark:bg-gray-800 lg:w-1/3 flex items-center justify-center p-8 border-l border-gray-100 dark:border-gray-800 hero-img">'
-                f'<img src="{img}" alt="Mod Illustration" loading="lazy" class="max-w-full h-auto rounded-lg shadow-sm mix-blend-multiply dark:mix-blend-normal object-contain max-h-80 hover:scale-105 transition-transform duration-300"></div>\n'
+                '<div class="bg-gray-50 dark:bg-gray-800 lg:w-1/3 flex flex-col items-center justify-center p-8 border-l border-gray-100 dark:border-gray-800 hero-img">'
+                f'<img src="{img}" alt="Mod Illustration" loading="lazy" onerror="this.parentElement.remove()" class="max-w-full h-auto rounded-lg shadow-sm mix-blend-multiply dark:mix-blend-normal object-contain max-h-80 hover:scale-105 transition-transform duration-300">{caption}</div>\n'
                 "</section>"
             )
         else:
